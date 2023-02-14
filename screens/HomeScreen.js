@@ -75,7 +75,7 @@ const HomeScreen = () => {
                         { name: `Lisa's Branch`, rating: '4.2', imgUrl: require('../assets/samples/near3.jpg'), distance: '900 m' }]} />
 
 
-                        <View className='h-20 flex-1' ></View>
+                        <View className='h-32 flex-1' ></View>
                     </ScrollView>
 
 
