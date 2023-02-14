@@ -1,0 +1,1 @@
+export const logoVisibleTime = 4000;
