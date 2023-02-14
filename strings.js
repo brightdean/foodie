@@ -4,3 +4,4 @@ export const activeString = 'Ενεργός/ή';
 export const recommendedRestaurants = 'Με καλές κριτικές';
 export const searchPrompt = 'Εστιατόρια και Πιάτα';
 export const menuString = 'Μενού';
+export const viewCartString = 'Δείτε το καλάθι σας';

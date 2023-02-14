@@ -6,6 +6,7 @@ import { StarIcon } from 'react-native-heroicons/outline';
 import { menuString } from '../strings';
 import { dishes } from '../api/mockup/dishes';
 import DishRow from '../components/DishRow';
+import FloatingCartPreview from '../components/FloatingCartPreview';
 
 const HEADER_MAX_HEIGHT = 200;
 const HEADER_MIN_HEIGHT = 50;
@@ -52,6 +53,8 @@ const RestaurantScreen = () => {
     return (
         <>
 
+            <FloatingCartPreview />
+
             <ScrollView bounces={false} className='bg-gray-200' onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
                 scrollEventThrottle={16}>
                 <Animated.View className='relative'>
@@ -96,7 +99,7 @@ const RestaurantScreen = () => {
             </ScrollView>
         </>
 
-    )
+    );
 }
 
 export default RestaurantScreen
