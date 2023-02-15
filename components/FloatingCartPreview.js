@@ -17,7 +17,9 @@ const FloatingCartPreview = () => {
 
     return (
         <View className='absolute bottom-4 z-10 w-full'>
-            <TouchableOpacity className='flex-row rounded-xl p-4 bg-orange-400 mx-12 justify-around items-center'>
+            <TouchableOpacity className='flex-row rounded-xl p-4 bg-orange-400 mx-12 justify-around items-center' onPress={() => {
+                navigation.navigate('Cart');
+            }}>
                 <View className='px-2 bg-orange-500 rounded-md'>
                     <Text className='text-lg text-white font-bold'>{items.length}</Text>
                 </View>

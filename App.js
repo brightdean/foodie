@@ -5,6 +5,7 @@ import { StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
 import { TailwindProvider } from 'tailwindcss-react-native';
 import RepawSplashScreen from './components/RepawSplashScreen';
+import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import RestaurantScreen from './screens/RestaurantScreen';
 import { store } from './store';
@@ -21,6 +22,7 @@ export default function App() {
             <Stack.Screen name='Home' component={HomeScreen} />
             <Stack.Screen name='Splash' component={RepawSplashScreen} />
             <Stack.Screen name='Restaurant' component={RestaurantScreen} />
+            <Stack.Screen name='Cart' component={CartScreen} options={{ presentation: 'modal', headerShown: false }} />
           </Stack.Navigator>
         </TailwindProvider>
       </Provider>

@@ -1,5 +1,5 @@
 import { View, Text, Image, ScrollView, TouchableOpacity, Animated } from 'react-native'
-import React, { useLayoutEffect, useRef, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { ArrowLeftIcon, MapPinIcon, StarIcon as StarIconSolid } from 'react-native-heroicons/solid';
 import { StarIcon } from 'react-native-heroicons/outline';
@@ -7,6 +7,8 @@ import { menuString } from '../strings';
 import { dishes } from '../api/mockup/dishes';
 import DishRow from '../components/DishRow';
 import FloatingCartPreview from '../components/FloatingCartPreview';
+import { useDispatch } from 'react-redux';
+import { setRestaurant } from '../slices/restaurantSlice';
 
 const HEADER_MAX_HEIGHT = 200;
 const HEADER_MIN_HEIGHT = 50;
@@ -26,6 +28,7 @@ const RestaurantScreen = () => {
     } = useRoute();
 
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     const [liked, setLiked] = useState(follow);
 
@@ -35,6 +38,16 @@ const RestaurantScreen = () => {
         });
     }, []);
 
+
+    useEffect(() => {
+        dispatch(setRestaurant({
+            name,
+            imgUrl,
+            rating,
+            distance,
+            follow,
+        }));
+    }, [dispatch]);
 
     const scrollY = useRef(new Animated.Value(0)).current;
 

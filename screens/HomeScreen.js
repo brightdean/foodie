@@ -45,7 +45,9 @@ const HomeScreen = () => {
                             </View>
 
 
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => {
+                                navigation.navigate('Cart');
+                            }}>
                                 <ShoppingBagIcon color={'#9B1D20'} />
                             </TouchableOpacity>
 
