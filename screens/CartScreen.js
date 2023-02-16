@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native'
-import React, { useLayoutEffect, useMemo } from 'react'
+import React, { useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectRestaurant } from '../slices/restaurantSlice';
@@ -14,64 +14,17 @@ const CartScreen = () => {
     const restaurant = useSelector(selectRestaurant);
     const items = useSelector(selectCartItems);
 
-    const dispatch = useDispatch();
+
     const navigation = useNavigation();
     const [groupedItems, setGroupedItems] = useState({});
 
     useMemo(() => {
-        const result = items.reduce((acc, obj) => (acc[obj.dish.id] = [...acc[obj.dish.id] || [], obj.dish], acc), {});
-
-
-        //console.log(result);
+        const result = items.reduce((acc, obj) => (acc[obj.id] = [...acc[obj.id] || [], obj], acc), {});
         setGroupedItems(result);
 
 
     }, [items]);
 
-    const handleAddItem = ({item}) => {
-        dispatch(addToCart({ item }));
-    }
-
-    const handleRemoveItem = ({id}) => {
-        if (!items.length > 0) return;
-
-        dispatch(removeFromCart(id));
-    }
-
-
-    const ItemRow = ({ count, item }) => {
-
-        const [expand, setExpand] = useState(false);    
-
-        return (
-            <TouchableOpacity className='border-gray-200 border bg-white' onPress={() => { setExpand(!expand) }}>
-                <View className='flex-row p-4 w-full items-center justify-start space-x-4 relative'>
-                    <Text className='text-lg text-orange-400 font-bold'>{count}x</Text>
-                    <View>
-                        <View >
-                            <Text className='flex-wrap text-lg text-gray-600'>{item.title}</Text>
-                        </View>
-                        <Text className='text-sm text-gray-500'>{item.price.toFixed(2)}€</Text>
-                    </View>
-
-                    <Text className='text-lg font-bold text-gray-500 absolute right-4'>{(item.price * count).toFixed(2)}€</Text>
-                </View>
-                {expand &&
-                    <View className='flex-row items-center space-x-6 mt-4 mb-4 w-full justify-end px-4'>
-                        <TouchableOpacity className='bg-orange-400 rounded-full p-1' onPress={()=> {handleRemoveItem(item.id)}}>
-                            <MinusIcon color={'white'} size={20} />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity className='bg-orange-400 rounded-full p-1' onPress={()=>{handleAddItem(item)}}>
-                            <PlusIcon color={'white'} size={20} />
-                        </TouchableOpacity>
-                    </View>}
-
-
-            </TouchableOpacity>
-
-        );
-    }
 
     return (
         <SafeAreaView>
@@ -116,6 +69,51 @@ const CartScreen = () => {
 
 
 
+}
+
+const ItemRow = ({ count, item }) => {
+
+    const dispatch = useDispatch();
+    const items = useSelector(selectCartItems);
+    const handleAddItem = ({ item }) => {
+        dispatch(addToCart(item));
+    }
+
+    const handleRemoveItem = ({ item }) => {
+        if (!items.length > 0) return;
+
+        dispatch(removeFromCart(item));
+    }
+
+    const [expand, setExpand] = useState(false);
+    return (
+        <TouchableOpacity className='border-gray-200 border bg-white' onPress={() => { setExpand(!expand) }}>
+            <View className='flex-row p-4 w-full items-center justify-start space-x-4 relative'>
+                <Text className='text-lg text-orange-400 font-bold'>{count}x</Text>
+                <View>
+                    <View >
+                        <Text className='flex-wrap text-lg text-gray-600'>{item.title}</Text>
+                    </View>
+                    <Text className='text-sm text-gray-500'>{item.price.toFixed(2)}€</Text>
+                </View>
+
+                <Text className='text-lg font-bold text-gray-500 absolute right-4'>{(item.price * count).toFixed(2)}€</Text>
+            </View>
+            {expand &&
+                <View className='flex-row items-center space-x-6 mt-4 mb-4 w-full justify-end px-4'>
+                    <TouchableOpacity className='bg-orange-400 rounded-full p-1' onPress={() => { handleRemoveItem({ item }) }}>
+                        <MinusIcon color={'white'} size={20} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity className='bg-orange-400 rounded-full p-1' onPress={() => { handleAddItem({ item }) }}>
+                        <PlusIcon color={'white'} size={20} />
+                    </TouchableOpacity>
+                </View>}
+
+
+        </TouchableOpacity>
+
+    );
 }
 
 export default CartScreen

@@ -14,13 +14,13 @@ const DishRow = ({ dish }) => {
     const dispatch = useDispatch();
 
     const handleAddItem = () => {
-        dispatch(addToCart({ dish }));
+        console.log(dish)
+        dispatch(addToCart(dish));
     }
 
     const handleRemoveItem = () => {
         if (!items.length > 0) return;
-
-        dispatch(removeFromCart(dish.id));
+        dispatch(removeFromCart(dish));
     }
 
     const QuantityViewer = () => {
