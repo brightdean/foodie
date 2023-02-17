@@ -4,11 +4,13 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { ArrowLeftIcon, MapPinIcon, StarIcon as StarIconSolid } from 'react-native-heroicons/solid';
 import { StarIcon } from 'react-native-heroicons/outline';
 import { menuString } from '../strings';
-import { dishes } from '../api/mockup/dishes';
+
 import DishRow from '../components/DishRow';
 import FloatingCartPreview from '../components/FloatingCartPreview';
 import { useDispatch } from 'react-redux';
 import { setRestaurant } from '../slices/restaurantSlice';
+import { dishes } from '../api/mockup/dishes';
+import DistancePreview from '../components/DistancePreview';
 
 const HEADER_MAX_HEIGHT = 200;
 const HEADER_MIN_HEIGHT = 50;
@@ -96,7 +98,9 @@ const RestaurantScreen = () => {
                         </View>
                         {distance ? <View className='flex-row items-center space-x-2'>
                             <MapPinIcon color={'#D86631'} size={24} />
-                            <Text className='text-[#D86631] text-sm'>{distance}</Text>
+                            {/* <Text className='text-[#D86631] text-sm'>{distance}</Text> */}
+                            <View><DistancePreview distance={distance} /></View>
+
                         </View> : <View></View>}
                     </View>
 
@@ -108,8 +112,9 @@ const RestaurantScreen = () => {
                         return <DishRow key={dish.id} dish={dish} />
                     })}
                 </View>
-
+                <View className='h-16 bg-white'></View>
             </ScrollView>
+
         </>
 
     );

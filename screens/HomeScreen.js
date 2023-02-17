@@ -5,7 +5,7 @@ import RepawSplashScreen from '../components/RepawSplashScreen';
 import { logoVisibleTime } from '../globals';
 import { AdjustmentsVerticalIcon, Bars2Icon, Bars3BottomLeftIcon, Bars3CenterLeftIcon, Bars3Icon, MagnifyingGlassCircleIcon, UserIcon } from 'react-native-heroicons/solid';
 import Category from '../components/Category';
-import { activeString, todayDishes, recentString, recommendedRestaurants, searchPrompt } from '../strings';
+import { activeString, todayDishes, recentString, recommendedRestaurants, searchPrompt, nearYouString } from '../strings';
 import RestaurantCard from '../components/RestaurantCard';
 import RecommendedCategory from '../components/RecommendedCategory';
 import { MagnifyingGlassIcon, ShoppingBagIcon } from 'react-native-heroicons/outline';
@@ -65,16 +65,16 @@ const HomeScreen = () => {
 
                     </View>
                     <ScrollView className='flex-1 h-full'>
-                        <Category header='' data={[{ title: 'French Toast', imgUrl: require('../assets/samples/dish1.jpg') },
+                        <Category header={todayDishes} data={[{ title: 'French Toast', imgUrl: require('../assets/samples/dish1.jpg') },
                         { title: 'Braised Cinammon Beef', imgUrl: require('../assets/samples/dish2.webp') },
                         { title: 'Bulgogi', imgUrl: require('../assets/samples/dish3.webp') },
                         { title: 'Shrimp Barley', imgUrl: require('../assets/samples/dish4.jpg') },
                         { title: 'Bhaji', imgUrl: require('../assets/samples/dish5.jpg') }]} />
-                        <RecommendedCategory header={recommendedRestaurants} data={[{ name: 'Chop Sticks', rating: '4.7', imgUrl: require('../assets/samples/rec1.jpg') },
-                        { name: 'A for Athens', rating: '4.9', imgUrl: require('../assets/samples/rec2.jpg') }]} />
-                        <RecommendedCategory header={recentString} data={[{ name: `Olivia's Brother`, rating: '4.5', imgUrl: require('../assets/samples/near1.jpg'), distance: '740 m' },
-                        { name: 'El Jiron', rating: '4.4', imgUrl: require('../assets/samples/near2.jpg'), distance: '1,2 km' },
-                        { name: `Lisa's Branch`, rating: '4.2', imgUrl: require('../assets/samples/near3.jpg'), distance: '900 m' }]} />
+                        <RecommendedCategory header={recommendedRestaurants} data={[{ name: 'Chop Sticks', rating: '4.7', imgUrl: require('../assets/samples/rec1.jpg'), distance: 2500 },
+                        { name: 'A for Athens', rating: '4.9', imgUrl: require('../assets/samples/rec2.jpg'), distance: 4000 }]} />
+                        <RecommendedCategory header={nearYouString} data={[{ name: `Olivia's Brother`, rating: '4.5', imgUrl: require('../assets/samples/near1.jpg'), distance: 740 },
+                        { name: 'El Jiron', rating: '4.4', imgUrl: require('../assets/samples/near2.jpg'), distance: 1200 },
+                        { name: `Lisa's Branch`, rating: '4.2', imgUrl: require('../assets/samples/near3.jpg'), distance: 900 }]} />
 
 
                         <View className='h-32 flex-1' ></View>

@@ -1,8 +1,9 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { UsersIcon, StarIcon as StarIconSolid, MapPinIcon } from 'react-native-heroicons/solid'
 import { StarIcon } from 'react-native-heroicons/outline'
 import { useNavigation } from '@react-navigation/native'
+import DistancePreview from './DistancePreview'
 const RestaurantCard = ({ imgUrl, name, rating, distance }) => {
 
     const navigation = useNavigation();
@@ -17,16 +18,12 @@ const RestaurantCard = ({ imgUrl, name, rating, distance }) => {
             <View className='flex-1 rounded-md p-2 mt-3 space-y-2'>
                 <View className='flex-row space-x-2 items-center justify-between'>
                     <Text className='font-bold text-base  text-black'>{name}</Text>
-                    {distance ?
-                        <View className='flex-row space-x-1 items-center mr-2'>
-                            <MapPinIcon color={'#D86631'} size={20} />
-                            <Text className='text-[#D86631] text-sm'>{distance}</Text>
+                    <View className='flex-row space-x-1 items-center mr-2'>
+                        <MapPinIcon color={'#D86631'} size={20} />
+                        <View><DistancePreview distance={distance} /></View>
 
-                        </View> :
-                        <View>
-                        </View>}
+                    </View>
                 </View>
-
 
                 <View className='flex-row justify-between items-center'>
 

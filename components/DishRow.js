@@ -14,7 +14,6 @@ const DishRow = ({ dish }) => {
     const dispatch = useDispatch();
 
     const handleAddItem = () => {
-        console.log(dish)
         dispatch(addToCart(dish));
     }
 
@@ -26,15 +25,15 @@ const DishRow = ({ dish }) => {
     const QuantityViewer = () => {
 
         return (
-            <View className='flex-row space-x-4 items-center'>
+            <View className='flex-row space-x-4 items-center mt-6'>
 
-                <TouchableOpacity className='rounded-lg bg-[#AD2E24] p-2' onPress={handleRemoveItem}>
+                <TouchableOpacity className='rounded-full bg-[#AD2E24] p-2' onPress={handleRemoveItem}>
                     <MinusIcon size={18} color={'white'} />
                 </TouchableOpacity>
 
                 <Text className='text-black text-lg'>{items.length}</Text>
 
-                <TouchableOpacity className='rounded-lg bg-[#AD2E24] p-2' onPress={handleAddItem}>
+                <TouchableOpacity className='rounded-full bg-[#AD2E24] p-2' onPress={handleAddItem}>
                     <PlusIcon size={18} color={'white'} />
                 </TouchableOpacity>
             </View>
@@ -42,18 +41,21 @@ const DishRow = ({ dish }) => {
     }
 
     return (
-        <TouchableOpacity className='flex-row w-full p-4 bg-white items-start justify-around border border-gray-200' onPress={() => { setPressed(!pressed) }}>
-            <View className='flex-col w-[85%]'>
-                <Text className='text-lg flex-wrap w-full' >{dish.title}</Text>
-                <Text className='text-sm text-gray-500 mb-3'>{dish.description}</Text>
-                <Text className='text-gray-500 text-base mb-8'>{dish.price}€</Text>
+        <TouchableOpacity className='w-full px-3 pt-3 pb-6 bg-white border border-gray-200' onPress={() => { setPressed(!pressed) }}>
+            <View className='flex-row items-center justify-between'>
+                <View className='flex-col w-[70%]'>
+                    <Text className='text-lg flex-wrap w-full' >{dish.title}</Text>
+                    <Text className='text-sm text-gray-500 mb-3 truncate'>{dish.description}</Text>
+                    <Text className='text-gray-500 text-base'>{dish.price}€</Text>
+                </View>
 
-                {pressed &&
-                    <QuantityViewer />}
+                <Image className='w-20 h-20 rounded-md' source={dish.imgUrl} />
 
             </View>
 
-            <Image className='w-16 h-16 rounded-md' source={dish.imgUrl} />
+            {pressed &&
+                <QuantityViewer />}
+
         </TouchableOpacity>
     );
 }
