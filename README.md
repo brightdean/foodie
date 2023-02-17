@@ -18,20 +18,25 @@
 
 ![IMG-1461](https://user-images.githubusercontent.com/102743301/219686969-fbf18692-235f-477c-ae04-6cff187d47e2.PNG)
 
+<br />
 
 ## Adding Items to cart
 
 ![IMG-1462](https://user-images.githubusercontent.com/102743301/219687039-4208f6a1-847f-4559-8b3d-3d4d51453420.PNG)
 
+<br />
+
 ## Cart Screen Overview
 
 ![IMG-1463](https://user-images.githubusercontent.com/102743301/219687106-da7c7905-b67b-4896-aba1-01712bd25dcf.PNG)
+
+<br />
 
 ## Cart Screen Edit Items
 
 ![IMG-1465](https://user-images.githubusercontent.com/102743301/219689022-f836c93c-b576-438a-a8a7-cf7e6491ed5b.PNG)
 
-
+<br />
 
 ## Cart Screen Payment Methods
 
