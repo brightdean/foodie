@@ -13,7 +13,7 @@
 ![IMG-1460](https://user-images.githubusercontent.com/102743301/219686748-62fb69cf-2f47-425d-aa13-5ad9f1ce5e03.PNG)
 
 <br />
-<br />
+
 ## Restaurant Screen
 
 ![IMG-1461](https://user-images.githubusercontent.com/102743301/219686969-fbf18692-235f-477c-ae04-6cff187d47e2.PNG)
